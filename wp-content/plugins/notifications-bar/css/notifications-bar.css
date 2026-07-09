@@ -1,0 +1,40 @@
+/* NOTIFICATIONS BAR DESKTOP */
+@media (min-width: 999px) {
+	.notifications-bar .container {
+		font-size: 16px;
+		width: 100%;
+		margin: 0 auto;
+		padding: 10px 90px;
+	}
+
+	.notifications-bar p {
+		padding-bottom: 0;
+	}
+
+}
+
+/* NOTIFICATIONS BAR MOBILE */
+@media (min-width: 1px) and (max-width: 998px) {
+	body #header-outer {
+		margin-bottom: 0;
+		padding: 0 0 12px 0 !important;
+	}
+
+	body #header-outer #top {
+		padding: 12px 0 0 0;
+	}
+
+	.notifications-bar {
+		font-size: 14px;
+		line-height: 20px;
+		padding: 12px 0;
+	}
+
+	.notifications-bar p {
+		padding-bottom: 0;
+	}
+
+	body.material #header-outer[data-using-secondary="1"] #search-outer {
+		top: 0 !important;
+	}
+}

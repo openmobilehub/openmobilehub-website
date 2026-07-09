@@ -1,0 +1,123 @@
+/*
+Theme Name: Salient Child Theme
+Description: This is a custom child theme for Salient
+Theme URI:   https://themeforest.net/item/salient-responsive-multipurpose-theme/4363266
+Author: ThemeNectar
+Author URI:  https://themeforest.net/user/themenectar
+Template: salient
+Version: 1.0
+*/
+
+/* OSANO */
+.osano-cm-list__list-item {
+	list-style: none !important;
+}
+
+span.osano-cm-toggle__label.osano-cm-label {
+	color: #444 !important;
+}
+
+/* START OF WP ADMIN HEADER => THIS HAS BEEN MOVED TO INLINE STYLES IN THE FUNCTIONS.PHP FILE */
+li#wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-list {
+	height: 550px !important;
+	width: 1100px !important;
+	display: flex !important;
+	flex-direction: column !important;
+	flex-wrap: wrap !important;
+}
+
+#wpadminbar .menupop li.hover>.ab-sub-wrapper {
+	z-index: 9999 !important;
+}
+
+#wpadminbar .ab-sub-wrapper,
+#wpadminbar ul,
+#wpadminbar ul li {
+	z-index: inherit !important;
+}
+
+#wpadminbar .menupop .menupop>.ab-item {
+	padding-right: 0 !important;
+}
+
+/* END OF WP ADMIN HEADER */
+
+/* CSS FOR EXTERNAL ICON */
+.external span:before {
+	display: none;
+}
+
+.external .menu-title-text:after {
+	display: inline-block !important;
+	font-family: "FontAwesome";
+	content: "\f08e" !important;
+	font-weight: 400 !important;
+	margin-left: 5px !important;
+	font-size: 10px !important;
+	position: relative !important;
+	top: -7px !important;
+}
+
+.external span.sf-sub-indicator:after {
+	display: none;
+}
+
+.join-btn a span:after {
+	/* display: none !important; */
+}
+
+/* FORCE TWITTER BIRD INTO THE X ICON */
+body .fa.fa-twitter:before {
+	content: "\e918" !important;
+}
+
+header nav .fa.fa-twitter:before,
+header nav .fa.fa-twitter:after {
+	content: "\e918" !important;
+}
+
+.footer-social .fa.fa-twitter:after {
+	display: none !important;
+}
+
+/* WP BAKERY TESTIMONIALS MODULE */
+.testimonial_slider .image-icon.has-bg {
+	width: 100%;
+	height: 100%;
+}
+
+.image-icon.has-bg {
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.testimonial_slider .image-icon {
+	margin-bottom: 16px;
+	max-width: 200px;
+	border-radius: 0;
+}
+
+.portrait-testimonials .testimonial_slider .image-icon {
+	line-height: 200px;
+}
+
+.landscape-testimonials .testimonial_slider .image-icon {
+	line-height: 100px;
+}
+
+/* SMOOTH RESPONSIVE TRANSITION FOR OFF CANVAS MENU */
+@media only screen and (min-width: 1407px) {
+	body #slide-out-widget-area-bg {
+		background-color: transparent !important;
+	}
+
+	body #header-outer,
+	body .container-wrap,
+	body #footer-outer {
+		transform: none !important;
+	}
+
+	body #slide-out-widget-area {
+		display: none !important;
+	}
+}

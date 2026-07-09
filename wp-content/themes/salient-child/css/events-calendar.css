@@ -1,0 +1,17 @@
+/* FIXES FOR THE EVENTS CALENDAR PLUGIN AND ALL OF ITS ADDONS */
+
+
+/* Fix for the featured image that loads on the singles page for events */
+.tribe-events-event-image .attachment-full.size-full.wp-post-image {
+    width: 100%;
+    object-fit: contain;
+    height: auto;
+}
+
+.single-tribe_events ul li {
+    /* list-style: none; */
+}
+
+#tribe-events-footer ul li {
+    list-style: none;
+}

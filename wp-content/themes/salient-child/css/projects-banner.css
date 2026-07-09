@@ -1,0 +1,74 @@
+/* HEADER */
+
+@media (min-width: 768px) {
+	.lfprojects {
+		background: #252525;
+		position: fixed;
+		width: 100%;
+		z-index: 99999;
+		line-height: 33px;
+		height: 33px;
+		display: flex;
+		justify-content: center;
+		align-content: center;
+	}
+
+	.lfprojects.white-background {
+		background: #ffffff;
+	}
+
+	.lfprojects.blue-background {
+		background: #2A7DE1;
+	}
+
+	.lfprojects img {
+		max-width: 270px;
+		vertical-align: middle;
+		height: 100% !important;
+		display: flex;
+	}
+
+	.lfprojects.white-background.jdf img {
+		max-height: 30px !important;
+		height: 30px !important;
+		line-height: 30px !important;
+		margin-bottom: 2px;
+	}
+
+	#header-outer {
+		margin-top: 32.4px;
+	}
+
+	div#ajax-content-wrap {
+		/* margin-top: 32px; /*
+	}
+
+	/* DPEL AWSF */
+	/*
+  .lfprojects.awsf-background {
+    height: 55px;
+  }
+
+  .lfprojects.awsf-background ~ #header-outer {
+    margin-top: 54.4px;
+  }
+
+  .lfprojects.awsf-background ~ div#ajax-content-wrap {
+    margin-top: 50px;
+  }
+  */
+	.sf-menu li ul {
+		width: 21em;
+	}
+}
+
+@media (max-width: 767px) {
+	.lfprojects {
+		display: none;
+	}
+}
+
+/* VISUAL COMPOSER MODULE ON PAGE FIX */
+.page-submenu.stuck {
+	margin-top: 33px !important;
+}

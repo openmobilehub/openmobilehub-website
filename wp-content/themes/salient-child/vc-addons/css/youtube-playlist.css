@@ -1,0 +1,383 @@
+/* ==========================================================================
+   LF YOUTUBE PLAYLIST MODULE
+   BEM PREFIX: .lf-ytp-
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CUSTOM PROPERTIES
+   -------------------------------------------------------------------------- */
+
+.lf-ytp {
+    --lf-ytp-gap: 22px;
+    --lf-ytp-radius: 8px;
+    --lf-ytp-bg: #fff;
+    --lf-ytp-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+    --lf-ytp-shadow-hover: 0 8px 28px rgba(0, 0, 0, .15);
+    --lf-ytp-title-color: #0f0f0f;
+    --lf-ytp-meta-color: #606060;
+    --lf-ytp-play-bg: rgba(20, 20, 20, .82);
+    --lf-ytp-play-hover: #ff0000;
+    --lf-ytp-modal-bg: rgba(0, 0, 0, .92);
+
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.lf-ytp *,
+.lf-ytp *::before,
+.lf-ytp *::after {
+    box-sizing: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   LOADING STATE
+   -------------------------------------------------------------------------- */
+
+.lf-ytp__loading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 40px 0;
+    color: var(--lf-ytp-meta-color);
+    font-size: .9375rem;
+}
+
+.lf-ytp__loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 0, 0, .12);
+    border-top-color: #606060;
+    border-radius: 50%;
+    animation: lf-ytp-spin .7s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes lf-ytp-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   CARD HIDDEN STATE — USED BY JS PAGINATION
+   -------------------------------------------------------------------------- */
+
+.lf-ytp__card--hidden {
+    display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   CARD
+   -------------------------------------------------------------------------- */
+
+.lf-ytp__card {
+    background: var(--lf-ytp-bg);
+    border-radius: var(--lf-ytp-radius);
+    overflow: hidden;
+    box-shadow: var(--lf-ytp-shadow);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.lf-ytp__card:hover {
+    box-shadow: var(--lf-ytp-shadow-hover);
+    transform: translateY(-3px);
+}
+
+/* --------------------------------------------------------------------------
+   THUMBNAIL
+   -------------------------------------------------------------------------- */
+
+.lf-ytp__thumb-wrap {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    /* 16:9 */
+    background: #000;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.lf-ytp__thumb {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .3s ease, opacity .25s ease;
+}
+
+.lf-ytp__card:hover .lf-ytp__thumb {
+    transform: scale(1.04);
+    opacity: .88;
+}
+
+.lf-ytp__thumb--placeholder {
+    background: linear-gradient(135deg, #1a1a2e, #0f3460);
+}
+
+/* --------------------------------------------------------------------------
+   PLAY BUTTON
+   -------------------------------------------------------------------------- */
+
+.lf-ytp__play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 68px;
+    height: 48px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity .2s ease;
+}
+
+.lf-ytp__card:hover .lf-ytp__play-btn,
+.lf-ytp__play-btn:focus-visible {
+    opacity: 1;
+}
+
+.lf-ytp__play-icon {
+    width: 68px;
+    height: 48px;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .5));
+}
+
+.lf-ytp__play-bg {
+    fill: var(--lf-ytp-play-bg);
+    transition: fill .15s ease;
+}
+
+.lf-ytp__play-btn:hover .lf-ytp__play-bg,
+.lf-ytp__play-btn:focus-visible .lf-ytp__play-bg {
+    fill: var(--lf-ytp-play-hover);
+}
+
+.lf-ytp__play-arrow {
+    fill: #fff;
+}
+
+/* SMALL PLAY BADGE — ALWAYS VISIBLE, BOTTOM RIGHT */
+.lf-ytp__thumb-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 36px;
+    height: 24px;
+    border-radius: 4px;
+    background-color: var(--lf-ytp-play-bg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 14'%3E%3Cpath d='M8 3.5l6 3.5-6 3.5z' fill='white'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px;
+    z-index: 1;
+    transition: background-color .15s ease;
+}
+
+.lf-ytp__card:hover .lf-ytp__thumb-wrap::after {
+    background-color: var(--lf-ytp-play-hover);
+}
+
+/* --------------------------------------------------------------------------
+   CARD BODY
+   -------------------------------------------------------------------------- */
+
+.lf-ytp__body {
+    padding: 12px 14px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.lf-ytp__title {
+    margin: 0;
+    font-size: .9375rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--lf-ytp-title-color);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.lf-ytp__title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.lf-ytp__title a:hover {
+    text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   META (VIEWS + TIME SINCE POSTED)
+   -------------------------------------------------------------------------- */
+
+.lf-ytp__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 8px;
+    font-size: .8125rem;
+    color: var(--lf-ytp-meta-color);
+    margin-top: auto;
+}
+
+/* SEPARATOR DOT BETWEEN VIEWS AND DATE */
+.lf-ytp__meta-views+.lf-ytp__meta-date::before {
+    content: '·';
+    margin-right: 8px;
+}
+
+.lf-ytp__meta-views,
+.lf-ytp__meta-date {
+    white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   LIGHTBOX MODAL
+   -------------------------------------------------------------------------- */
+
+.lf-ytp-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.lf-ytp-modal[hidden] {
+    display: none !important;
+}
+
+.lf-ytp-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: var(--lf-ytp-modal-bg);
+    cursor: pointer;
+}
+
+.lf-ytp-modal__content {
+    position: relative;
+    width: 100%;
+    max-width: 920px;
+    z-index: 1;
+}
+
+.lf-ytp-modal__close {
+    position: absolute;
+    top: -46px;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    opacity: .75;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity .15s ease;
+}
+
+.lf-ytp-modal__close:hover {
+    opacity: 1;
+}
+
+.lf-ytp-modal__close svg {
+    width: 28px;
+    height: 28px;
+}
+
+.lf-ytp-modal__video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #000;
+}
+
+.lf-ytp-modal__iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.lf-ytp-modal__title {
+    margin: 12px 0 0;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    opacity: .85;
+    line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   ERROR NOTICE (ADMINS ONLY)
+   -------------------------------------------------------------------------- */
+
+.lf-ytp-error {
+    padding: 12px 16px;
+    border-left: 4px solid #d63638;
+    background: #fcf0f1;
+    color: #1d2327;
+    font-size: .875rem;
+    border-radius: 0 4px 4px 0;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+    .lf-ytp--cols-4 .lf-ytp__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .lf-ytp--cols-3 .lf-ytp__grid,
+    .lf-ytp--cols-4 .lf-ytp__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+
+    .lf-ytp--cols-3 .lf-ytp__grid,
+    .lf-ytp--cols-4 .lf-ytp__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lf-ytp-modal__close {
+        top: -42px;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   PAGINATION — INHERITS lf-pagination STYLES FROM latest-posts-linux.css
+   -------------------------------------------------------------------------- */
+
+.lf-ytp__pagination {
+    margin-top: 32px;
+}

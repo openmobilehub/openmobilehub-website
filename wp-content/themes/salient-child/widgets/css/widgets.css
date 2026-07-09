@@ -1,0 +1,50 @@
+/* WIDGETS */
+.list-design.outer.widget {
+	padding: 10px;
+}
+
+.list-design.outer.widget .list-design.flex {
+	border: 1px solid #d0d0d0;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.list-design.outer.widget .widget-title,
+.list-design.outer.widget .widget-category {
+	font-size: 12px;
+	line-height: 16px;
+	padding-bottom: 5px;
+}
+
+.list-design.outer.widget .widget-category {
+	text-transform: uppercase;
+	font-weight: 400;
+}
+
+.list-design.outer.widget .widget-title {
+	font-weight: 600;
+}
+
+.list-design.outer.widget .list-design.left,
+.list-design.outer.widget .list-design.right {
+	flex-basis: 50%;
+}
+
+.list-design.outer.widget .list-design.left {
+	margin-right: 10px;
+	border: none;
+	justify-content: start;
+}
+
+.list-design.outer.widget .list-design.left img {
+    object-fit: cover !important;
+    height: 100px;
+}
+
+.list-design.outer.widget .list-design.right {
+	margin-left: 10px;
+}
+
+.list-design.outer.widget .widget-date {
+	padding-bottom: 5px;
+}

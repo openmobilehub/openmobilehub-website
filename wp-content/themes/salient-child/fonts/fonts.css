@@ -1,0 +1,127 @@
+/* FONTS FOR SALIENT DEFAULT THEME FONT FUNCTIONALITY */
+@font-face {
+	font-family: "Bitter";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/wp-content/themes/salient-child/fonts/Bitter/static/Bitter-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Montserrat";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/wp-content/themes/salient-child/fonts/Montserrat/static/Montserrat-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Open Sans";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/wp-content/themes/salient-child/fonts/Open_Sans/static/OpenSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Roboto";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/wp-content/themes/salient-child/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Roboto Slab";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/wp-content/themes/salient-child/fonts/Roboto_Slab/static/RobotoSlab-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/wp-content/themes/salient-child/fonts/Source_Sans_3/static/SourceSans3-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Work Sans";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/wp-content/themes/salient-child/fonts/Work_Sans/static/WorkSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Inter";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/wp-content/themes/salient-child/fonts/Inter/static/Inter_18pt-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Fira Sans";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/wp-content/themes/salient-child/fonts/Fira_Sans/FiraSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Ubuntu";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/wp-content/themes/salient-child/fonts/Ubuntu/Ubuntu-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Cairo";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/wp-content/themes/salient-child/fonts/Cairo/static/Cairo-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "IBM Plex Sans";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/wp-content/themes/salient-child/fonts/IBM_Plex_Sans/IBMPlexSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Nunito Sans";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/wp-content/themes/salient-child/fonts/Nunito_Sans/static/NunitoSans_7pt-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Archivo";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/wp-content/themes/salient-child/fonts/Archivo/static/Archivo-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Lato";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/wp-content/themes/salient-child/fonts/Lato/Lato-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "ClarityCity";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/wp-content/themes/salient-child/fonts/ClarityCity/ClarityCity-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "ClarityCity-SemiBold";
+	src: url("/wp-content/themes/salient-child/fonts/ClarityCity/ClarityCity-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "ClarityCity-Bold";
+	src: url("/wp-content/themes/salient-child/fonts/ClarityCity/ClarityCity-Bold.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "ClarityCity-ExtraBold";
+	src: url("/wp-content/themes/salient-child/fonts/ClarityCity/ClarityCity-ExtraBold.ttf") format("truetype");
+}

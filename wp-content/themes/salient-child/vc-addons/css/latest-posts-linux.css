@@ -1,0 +1,96 @@
+/* =============================================================================
+   LF PILL — REUSABLE TAXONOMY PILL (CATEGORIES AND TAGS)
+   USED BY THE LATEST POSTS MODULE FOR CATEGORY AND TAG PILLS ON CARDS AND LIST ITEMS
+   ============================================================================= */
+
+.lf-pill {
+    display: inline-block;
+    background-color: #000;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 400;
+    padding: 0.2rem 0.75rem;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.lf-pill:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* CATEGORY PILL */
+.lf-pill--category {
+    background-color: #000;
+}
+
+.lf-pill--category:hover {
+    background-color: #333;
+}
+
+/* TAG PILL */
+.lf-pill--tag {
+    background-color: #000;
+}
+
+.lf-pill--tag:hover {
+    background-color: #333;
+}
+
+/* TABLET — SHRINK PILLS TO MATCH REDUCED TEXT SIZES */
+@media only screen and (max-width: 1000px) {
+    .lf-pill {
+        font-size: 0.7rem;
+        padding: 0.15rem 0.6rem;
+    }
+}
+
+/* MOBILE — RESTORE NORMAL PILL SIZE */
+@media only screen and (max-width: 690px) {
+    .lf-pill {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.75rem;
+    }
+}
+
+/* =============================================================================
+   LF SEE ALL BAR — SHORTCODE SPECIFIC, LINKS TO TAG/CATEGORY ARCHIVES
+   COMMENTED OUT — FEATURE REMOVED BUT KEPT FOR REFERENCE
+   ============================================================================= */
+
+/* .lf-see-all-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+} */
+
+/* .lf-see-all-bar__btn {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    border-radius: 3px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+} */
+
+/* .lf-see-all-bar__btn:hover {
+    background-color: #333;
+    color: #fff;
+} */
+
+/* @media only screen and (max-width: 1000px) {
+    .lf-see-all-bar {
+        flex-wrap: wrap;
+    }
+} */
+
+/* @media only screen and (max-width: 690px) {
+    .lf-see-all-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+} */

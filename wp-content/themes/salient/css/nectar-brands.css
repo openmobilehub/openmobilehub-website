@@ -1,0 +1,70 @@
+@font-face{
+  font-family:'nectarbrands';
+  src:url('./fonts/nectar-brands.eot?v=1.4');
+  src:url('./fonts/nectar-brands.eot?#iefix&v=1.4') format('embedded-opentype'),
+      url('./fonts/nectar-brands.woff?v=1.4') format('woff'),
+      url('./fonts/nectar-brands.ttf?v=1.4') format('truetype'),
+      url('./fonts/nectar-brands.svg?v=1.4') format('svg');
+  font-weight:normal;
+	font-display:block;
+  font-style:normal
+}
+
+
+body i[class*="nectar-brands"] {
+  font-family:'nectarbrands';
+  speak:none; font-style:normal;
+  font-weight:normal;
+  font-variant:normal;
+  text-transform:none;
+  line-height:1;
+  -webkit-font-smoothing:antialiased
+}
+
+.nectar-brands-applemusic:before{content:"\e903"}
+.nectar-brands-houzz:before{content:"\e904"}
+.nectar-brands-twitch:before{content:"\e905"}
+.nectar-brands-artstation:before{content:"\e90b"}
+.nectar-brands-discord:before{content:"\e90c"}
+.nectar-brands-messenger:before{content:"\e90d"}
+.nectar-brands-tiktok:before{content:"\e90f"}
+.nectar-brands-patreon:before{content:"\e912"}
+.nectar-brands-threads:before{content:"\e913"}
+.nectar-brands-medium:before{content:"\e914"}
+.nectar-brands-trustpilot:before{content:"\e916"}
+.nectar-brands-mastodon:before{content:"\e917"}
+.nectar-brands-x-twitter:before{content:"\e918"}
+.nectar-brands-bluesky:before{content:"\e919"}
+.nectar-brands-googlepay:before{content:"\e900"}
+
+.nectar-brands-email:before { content: "\e901"; }
+.nectar-brands-phone:before { content: "\e902"; }
+.nectar-brands-reddit:before { content: "\e906"; }
+.nectar-brands-rss:before { content: "\e907"; }
+.nectar-brands-deviantart:before { content: "\e908"; }
+.nectar-brands-spotify:before { content: "\e909"; }
+.nectar-brands-strava:before { content: "\e90a"; }
+.nectar-brands-mixcloud:before { content: "\e90e"; }
+.nectar-brands-snapchat:before { content: "\e910"; }
+.nectar-brands-yelp:before { content: "\e911"; }
+.nectar-brands-houzz:before { content: "\e915"; }
+.nectar-brands-vk:before { content: "\e91a"; }
+.nectar-brands-soundcloud:before { content: "\e91b"; }
+.nectar-brands-stackexchange:before { content: "\e91c"; }
+.nectar-brands-github:before { content: "\e91d"; }
+.nectar-brands-instagram:before { content: "\e91e"; }
+.nectar-brands-flickr:before { content: "\e91f"; }
+.nectar-brands-behance:before { content: "\e920"; }
+.nectar-brands-tumblr:before { content: "\e921"; }
+.nectar-brands-youtube:before { content: "\e922"; }
+.nectar-brands-pinterest:before { content: "\e923"; }
+.nectar-brands-dribbble:before { content: "\e924"; }
+.nectar-brands-vimeo:before { content: "\e925"; }
+.nectar-brands-facebook:before { content: "\e926"; }
+.nectar-brands-xing:before { content: "\e927"; }
+.nectar-brands-tripadvisor:before { content: "\e928"; }
+.nectar-brands-bandcamp:before { content: "\e929"; }
+.nectar-brands-slack:before { content: "\e92a"; }
+.nectar-brands-whatsapp:before { content: "\e92b"; }
+.nectar-brands-linkedin:before { content: "\e92c"; }
+.nectar-brands-telegram:before { content: "\e92d"; }
