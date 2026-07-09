@@ -1,7 +1,7 @@
 # openmobilehub.org — static site
 
 The live website of [Open Mobile Hub](https://openmobilehub.org), served as plain
-static HTML from GitHub Pages. Migrated from WordPress on 2026-07-09; the pages are
+static HTML from Vercel. Migrated from WordPress on 2026-07-09; the pages are
 the rendered output of the old site (Salient theme markup), kept pixel-identical.
 
 ## How this site works
@@ -9,7 +9,9 @@ the rendered output of the old site (Salient theme markup), kept pixel-identical
 - Every page is a folder with an `index.html` (`/about/index.html` → openmobilehub.org/about/).
 - All images/CSS/JS live under `/wp-content/` (paths kept from WordPress so old
   inbound links still work). There is **no WordPress, PHP, or database** — files only.
-- Pushing to `main` deploys automatically via GitHub Pages.
+- Pushing to `main` deploys automatically via Vercel.
+- `vercel.json` sets `trailingSlash: true` so `/about` redirects to `/about/`,
+  matching the old WordPress URLs.
 
 ## Common tasks
 
@@ -45,19 +47,44 @@ The form on `/contact-us/` is a HubSpot embed (loads from js.hsforms.net at view
 time). It needs no server here. To change the form, edit it in HubSpot
 (portal 8112310); the page picks it up automatically.
 
-## One-time: pointing the domain at GitHub Pages
+## One-time: Vercel setup and DNS cutover
 
-1. Push this repo to GitHub and enable **Settings → Pages → Deploy from branch**
-   (`main`, `/ (root)`).
-2. In **Settings → Pages → Custom domain**, enter `openmobilehub.org`
-   (the `CNAME` file in this repo keeps that setting).
-3. At the DNS provider for openmobilehub.org, replace the current A records with
-   GitHub Pages': `185.199.108.153`, `185.199.109.153`, `185.199.110.153`,
-   `185.199.111.153` (and AAAA `2606:50c0:8000::153` … `2606:50c0:8003::153` if
-   IPv6 is wanted). Point `www` as a CNAME at `<org-or-user>.github.io`.
-4. Wait for DNS to propagate, then tick **Enforce HTTPS** on the Pages settings page.
-5. Only after verifying the Pages site serves correctly should the old
-   WordPress (Pantheon) instance be retired.
+1. In Vercel (Pro team — the free Hobby plan can't connect GitHub-organization
+   repos): **Add New → Project**, import `openmobilehub/openmobilehub-website`.
+   - Framework Preset: **Other**
+   - Build Command: **none** (leave empty)
+   - Output Directory: **`.`** (repo root)
+2. In the project: **Settings → Domains**, add `openmobilehub.org` and
+   `www.openmobilehub.org`. Vercel will display the exact DNS records it wants
+   (typically an A record `76.76.21.21` for the apex and a CNAME
+   `cname.vercel-dns.com` for `www`) — treat the dashboard as authoritative.
+3. Send those records to Linux Foundation IT to replace the current
+   (Pantheon/WordPress) records for openmobilehub.org.
+4. After DNS propagates, Vercel issues the TLS certificate automatically.
+   Verify https://openmobilehub.org serves this site and that `/definitely-missing/`
+   shows the custom 404 page.
+5. Only after a few days of verified serving should the old WordPress (Pantheon)
+   instance be retired. GitHub Pages was used during migration and can be
+   disabled in the repo settings once Vercel is live.
+
+## Serving another site under /credentagent
+
+Deploy the other site as its **own Vercel project**, then add rewrites to this
+repo's `vercel.json`:
+
+```json
+{
+  "trailingSlash": true,
+  "rewrites": [
+    { "source": "/credentagent", "destination": "https://<credentagent-deployment>.vercel.app/" },
+    { "source": "/credentagent/:path*", "destination": "https://<credentagent-deployment>.vercel.app/:path*" }
+  ]
+}
+```
+
+Visitors stay on `openmobilehub.org/credentagent` while content is served from the
+other project. The credentagent site must be built path-aware (e.g. Next.js
+`basePath: '/credentagent'`, or relative asset URLs) since it lives under a subpath.
 
 ## Repo tools (`tools/`)
 
