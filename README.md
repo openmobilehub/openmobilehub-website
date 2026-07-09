@@ -67,24 +67,58 @@ time). It needs no server here. To change the form, edit it in HubSpot
    instance be retired. GitHub Pages was used during migration and can be
    disabled in the repo settings once Vercel is live.
 
-## Serving another site under /credentagent
+## Multi-site architecture: other sites under openmobilehub.org/&lt;path&gt;
 
-Deploy the other site as its **own Vercel project**, then add rewrites to this
-repo's `vercel.json`:
+**The project that owns the domain owns the routing.** This repo's Vercel project
+serves `openmobilehub.org`, so its `vercel.json` acts as the traffic director for
+the whole domain. Rewrites proxy path prefixes to any HTTPS origin — another
+Vercel project (any account or team), a GitHub Pages site, Netlify, anything.
+Sub-sites deploy on their own cadence, from their own repos, owned by their own
+teams; they do **not** need to live in the openmobilehub GitHub org or on Vercel.
+
+```
+                          ┌────────────────────────────────────┐
+  openmobilehub.org ────► │ this repo's Vercel project (router)│
+                          └────────────────┬───────────────────┘
+        /            → serves this repo's static files
+        /credentagent/* ──rewrite──► https://credentagent.vercel.app/*
+        /otherproject/* ──rewrite──► https://someuser.github.io/otherproject/*
+```
+
+### Adding a sub-site
+
+1. Deploy the sub-site anywhere with a public HTTPS URL.
+2. Add two lines to `vercel.json` in this repo and merge the PR:
 
 ```json
 {
   "trailingSlash": true,
   "rewrites": [
-    { "source": "/credentagent", "destination": "https://<credentagent-deployment>.vercel.app/" },
-    { "source": "/credentagent/:path*", "destination": "https://<credentagent-deployment>.vercel.app/:path*" }
+    { "source": "/credentagent", "destination": "https://<credentagent-origin>/" },
+    { "source": "/credentagent/:path*", "destination": "https://<credentagent-origin>/:path*" }
   ]
 }
 ```
 
-Visitors stay on `openmobilehub.org/credentagent` while content is served from the
-other project. The credentagent site must be built path-aware (e.g. Next.js
-`basePath: '/credentagent'`, or relative asset URLs) since it lives under a subpath.
+Visitors stay on `openmobilehub.org/credentagent` while content is fetched from
+the origin behind the scenes. The PR to this repo doubles as the governance gate
+for what appears under the org's domain.
+
+### Requirements on each sub-site
+
+- **Must be path-aware.** Assets and internal links must be relative or prefixed
+  with the sub-path, because a root-relative `/static/app.css` in proxied content
+  resolves against `openmobilehub.org/static/...` (this marketing site) and 404s.
+  In practice: Next.js `basePath: '/credentagent'`, Vite `base`, Jekyll `baseurl`.
+  GitHub Pages *project sites* are already subpath-built; if the repo name matches
+  the path prefix they proxy almost unmodified.
+- **Watch for redirect leaks.** If the origin issues an absolute redirect to
+  itself (GitHub Pages does this for directory URLs missing a trailing slash),
+  the browser escapes to the origin's domain. Fix with consistent trailing-slash
+  links or extra rewrite rules; test each sub-site's deep links.
+- **Canonical/SEO tags** in sub-sites should reference
+  `openmobilehub.org/<path>/...` if they should be indexed under this domain
+  rather than their origin URL.
 
 ## Repo tools (`tools/`)
 
