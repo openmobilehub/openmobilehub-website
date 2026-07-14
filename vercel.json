@@ -1,3 +1,7 @@
 {
-  "trailingSlash": true
+  "trailingSlash": true,
+  "rewrites": [
+    { "source": "/credentagent", "destination": "https://openmobilehub.github.io/credentagent-website/" },
+    { "source": "/credentagent/:path*", "destination": "https://openmobilehub.github.io/credentagent-website/:path*" }
+  ]
 }
