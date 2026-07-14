@@ -94,11 +94,18 @@ teams; they do **not** need to live in the openmobilehub GitHub org or on Vercel
 {
   "trailingSlash": true,
   "rewrites": [
-    { "source": "/credentagent", "destination": "https://<credentagent-origin>/" },
-    { "source": "/credentagent/:path*", "destination": "https://<credentagent-origin>/:path*" }
+    { "source": "/subsite", "destination": "https://<origin>/" },
+    { "source": "/subsite/", "destination": "https://<origin>/" },
+    { "source": "/subsite/:path+", "destination": "https://<origin>/:path+" }
   ]
 }
 ```
+
+All three sources are required: with `trailingSlash: true`, `/subsite` 308-redirects
+to `/subsite/`, and a bare trailing slash matches neither `/subsite` nor
+`/subsite/:path+` — without the middle rule the sub-site root falls through to
+this site's 404. (Learned the hard way; see the /credentagent rules in
+`vercel.json` for the live example.)
 
 Visitors stay on `openmobilehub.org/credentagent` while content is fetched from
 the origin behind the scenes. The PR to this repo doubles as the governance gate
