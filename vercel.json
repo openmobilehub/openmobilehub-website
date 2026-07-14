@@ -2,7 +2,8 @@
   "trailingSlash": true,
   "rewrites": [
     { "source": "/credentagent", "destination": "https://openmobilehub.github.io/credentagent-website/" },
-    { "source": "/credentagent/", "destination": "https://openmobilehub.github.io/credentagent-website/" },
-    { "source": "/credentagent/:path+", "destination": "https://openmobilehub.github.io/credentagent-website/:path+" }
+    { "source": "/credentagent/:path(.*)", "destination": "https://openmobilehub.github.io/credentagent-website/:path" },
+    { "source": "/demo1", "destination": "https://omh-website-demo1.vercel.app/" },
+    { "source": "/demo1/:path(.*)", "destination": "https://omh-website-demo1.vercel.app/:path" }
   ]
 }
